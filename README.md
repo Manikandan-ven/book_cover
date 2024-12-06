@@ -289,8 +289,8 @@ urlpatterns = [
 </html>
 ```
 # OUTPUT:
-![alt text](<Screenshot 2024-12-06 094628.png>)
 
+![Screenshot 2024-12-05 141003](https://github.com/user-attachments/assets/f8d5dcd8-7e07-4259-b8a2-816a5956fd99)
 
 # RESULT:
 The program for designing book front cover page using HTML and CSS is completed successfully.
