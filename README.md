@@ -29,6 +29,128 @@ Insert the images in their appropriate places.
 Publish the website in the LocalHost.
 
 # PROGRAM:
+### views.py
+```
+from django.shortcuts import render
+
+def book(request):
+    return render(request,'web.html')
+```
+### settings.py
+```
+
+
+from pathlib import Path
+import os
+
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+
+
+SECRET_KEY = 'django-insecure-pg%ap8h4b8g+^gyw$cwuxx_nyzc(y&_&ngc0qi4nfxha4i_a%x'
+
+
+DEBUG = True
+
+ALLOWED_HOSTS = []
+
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'app',
+]
+
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+ROOT_URLCONF = 'manikandan.urls'
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
+WSGI_APPLICATION = 'manikandan.wsgi.application'
+
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+
+
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]
+
+
+m/en/5.1/topics/i18n/
+
+LANGUAGE_CODE = 'en-us'
+
+TIME_ZONE = 'UTC'
+
+USE_I18N = True
+
+USE_TZ = True
+
+
+
+STATIC_URL = 'static/'
+
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+```
+### urls.py
+```from django.contrib import admin
+from django.urls import path
+from app import views
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('book',views.book)
+]
+```
+### web.html
 ```
 <!DOCTYPE html>
 <html lang="en">
@@ -116,7 +238,7 @@ Publish the website in the LocalHost.
         margin: 10px 50px;
     }
     
-    .author-div {
+    .author-div { 
         display: flex;
         justify-content: space-between;
         padding: 20px 0;
@@ -139,6 +261,7 @@ Publish the website in the LocalHost.
     }
     </style>
 </head>
+{% load static %}
 
 <body>
     <center>
@@ -148,11 +271,11 @@ Publish the website in the LocalHost.
     <h1 class="heading">Responsive Web <br> Design with <br> HTML5 and CSS</h1>
     <p class="sub-heading">Develop future-proof responsive websites <br> using the latest HTML5 and CSS3 techniques</p>
     <div class="spiral-image-div">
-        <img src="sp3.png"height="40%" width="35%">
+        <img src="{% static 'images/sp3.png'%}"height="40%" width="35%">
     </div>
     <div class="editon-image-div">
         <p class="third-edition">Third Edition</p>
-        <img src="pic7.png"height="45%" width="35%">
+        <img src="{% static 'images/pic7.png'%}"height="45%" width="35%">
     </div>
     <hr class="custom-full-hr">
     <div class="author-div">
@@ -166,7 +289,7 @@ Publish the website in the LocalHost.
 </html>
 ```
 # OUTPUT:
-![Screenshot 2024-12-05 141003](https://github.com/user-attachments/assets/1696fba5-ff02-48e8-81d7-5fd0ad4bdfaf)
+![alt text](<Screenshot 2024-12-06 094628.png>)
 
 
 # RESULT:
